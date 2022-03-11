@@ -12,12 +12,16 @@ export enum ValidType {
   REGULAR = 'REGULAR',
   CUSTOM =  'CUSTOM',
 }
-
+export interface IOption {
+  label: string,
+  value: string | boolean
+}
 export interface IFormItem {
   key: string,
   label?: string,
   type: FormItemType,
-  rules: ValidType[]
+  rules?: ValidType[],
+  options?: IOption[]
 }
 export interface IFiled {
   key: string,
@@ -26,7 +30,7 @@ export interface IFiled {
 }
 export interface IBaseOperation {
   key: string,
-  label: string,
+  label: string | boolean,
 }
 export interface IRouterOperation {
   key: string,
@@ -56,7 +60,7 @@ export interface ITable {
 }
 export interface IInputData {
   moduleName: string,
-  moduleTitle: string,
+  moduleTitle?: string,
   filters?: IFormItem[],
   operation?: 'ADD' | 'EXPORT'
   table?: ITable

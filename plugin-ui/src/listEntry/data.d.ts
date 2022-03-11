@@ -60,7 +60,7 @@ export interface ITable {
 }
 export interface IInputData {
   moduleName: string,
-  moduleTitle: string,
+  moduleTitle?: string,
   filters?: IFormItem[],
   operation?: 'ADD' | 'EXPORT'
   table?: ITable
