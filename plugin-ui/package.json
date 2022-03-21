@@ -4,11 +4,14 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:form": "tsc &&  vite build --mode form ",
+    "build:list": "tsc && vite build --mode list",
+    "build": "npm run build:form && npm run build:list",
     "preview": "vite preview"
   },
   "dependencies": {
     "antd": "^4.19.1",
+    "cross-env": "^7.0.3",
     "less": "^4.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
