@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import usePluginImport from "vite-plugin-importer";
 import path from "path";
 //console.log(process.env, '=????++++++++++++++++++==')
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ command, mode }) => {
   const baseConfig = {
     resolve: {
       alias: {
@@ -44,12 +44,19 @@ export default defineConfig(({ mode }) => {
       },
     },
   }
-  if (mode === 'form') {
-    baseConfig.build.rollupOptions.input = {
-      form: path.resolve(__dirname, "src/formEntry/index.html")
+  if (command === 'build') {
+    if (mode === 'form') {
+      baseConfig.build.rollupOptions.input = {
+        form: path.resolve(__dirname, "src/formEntry/index.html")
+      }
+    } else if (mode === 'list') {
+      baseConfig.build.rollupOptions.input = {
+        list: path.resolve(__dirname, "src/listEntry/index.html")
+      }
     }
-  } else if (mode === 'list') {
+  } else {
     baseConfig.build.rollupOptions.input = {
+      form: path.resolve(__dirname, "src/formEntry/index.html"),
       list: path.resolve(__dirname, "src/listEntry/index.html")
     }
   }
