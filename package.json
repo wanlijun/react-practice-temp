@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start:temp": "pnpm recursive run dev --filter @plugin/temp",
+    "start:ui": "pnpm recursive run dev --filter @plugin/ui ",
+    "build:ui": "pnpm recursive run build --filter @plugin/ui "
+  },
+  "workspaces": [
+    "./packages/*"
+  ]
+}
