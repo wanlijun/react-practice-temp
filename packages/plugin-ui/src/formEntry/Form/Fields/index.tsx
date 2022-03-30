@@ -9,10 +9,11 @@ import {
 } from '@ant-design/icons';
 import FlexBox from "src/components/FlexBox";
 import {
-  TYPE_MAP_OPTIONS
+  TYPE_MAP_OPTIONS,
+  RULE_ITEMS
 } from 'src/formEntry/constants';
 import styles from './index.module.less'
-import Rule from './Rule/index.old';
+// import Rule from './Rule/index.old';
 
 const { Option } = Select;
 
@@ -61,7 +62,28 @@ const Fields = ({ name }: { name: (string | number)[] }) => {
                     }
                   </Select>
                 </Form.Item>
-                <Rule name={[childName, "rules"]} />
+                <Form.Item
+                  {...restField}
+                  label="规则"
+                  name={[childName, "rules"]}
+                >
+                  <Select
+                    style={{ width: '195px' }}
+                    mode="multiple"
+                    placeholder="请选择规则"
+                  >
+                    {
+                      RULE_ITEMS.map((item) => (
+                        <Option
+                          value={item.type}
+                          key={item.type}
+                        >
+                          {item.typeName}
+                        </Option>
+                      ))
+                    }
+                  </Select>
+                </Form.Item>
                 <PlusCircleOutlined onClick={() => add()} style={{ fontSize: '30px', color: '#2196f3' }} />
                 <MinusCircleOutlined onClick={() => remove(idx)} style={{ fontSize: '30px', color: '#2196f3' }} />
               </FlexBox>

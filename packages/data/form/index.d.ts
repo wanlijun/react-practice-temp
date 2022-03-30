@@ -1,7 +1,25 @@
 
-type BaseFormItemType = 'INPUT' | 'DATE' | 'SELECT' | 'RANGE_DATE' | 'TIME' | 'RANGE_TIME' | 'CASCADER'
-type AdvanceFormItemType = 'AUTO_COMPLETE' | 'CHECK_BOX' | 'INPUT_NUMBER' | 'RADIO' | 'SWITCH' | 'TRANSFER' | 'TREESELECT' | 'UPLOAD' | 'QUILL'
-type FormItemType = BaseFormItemType | AdvanceFormItemType;
+// type BaseFormItemType = 'INPUT' | 'DATE' | 'SELECT' | 'RANGE_DATE' | 'TIME' | 'CASCADER'
+// type AdvanceFormItemType = 'CHECK_BOX' | 'INPUT_NUMBER' | 'RADIO' | 'SWITCH' | 'TREESELECT' | 'UPLOAD' | 'QUILL' | 'CUSTOM'
+// type FormItemType = BaseFormItemType | AdvanceFormItemType;
+
+export enum IFormItemType {
+  INPUT = 'INPUT',
+  DATE = 'DATE',
+  SELECT = 'SELECT',
+  RANGE_DATE = 'RANGE_DATE',
+  CASCADER = 'CASCADER',
+  CHECK_BOX = 'CHECK_BOX',
+  INPUT_NUMBER = 'INPUT_NUMBER',
+  RADIO = 'RADIO',
+  SWITCH = 'SWITCH',
+  TREESELECT = 'TREESELECT',
+  UPLOAD = 'UPLOAD',
+  QUILL = 'QUILL',
+  TIME = 'TIME',
+  TRANSFER = 'TRANSFER',
+  CUSTOM = 'CUSTOM',
+}
 
 export enum ValidType {
   REQUIRED = 'REQUIRED',
@@ -13,6 +31,8 @@ export enum ValidType {
   TEL_PHONE = 'TEL_PHONE',
   REGULAR = 'REGULAR',
   CUSTOM = 'CUSTOM',
+  MIN_LEN = 'MIN_LEN',
+  MAX_LEN = 'MAX_LEN',
 }
 export interface IOption {
   label: string,
@@ -21,7 +41,7 @@ export interface IOption {
 export interface IFormItem {
   key: string,
   label?: string,
-  type: FormItemType,
+  type: IFormItemType,
   rules?: ValidType[],
   options?: IOption[]
 }
@@ -63,14 +83,11 @@ export interface ITable {
 export interface IRuleFormItem {
   type: ValidType,
   typeName: string,
-  check: boolean,
-  msg: string,
-  value?: string
 }
 export interface IFields {
   label: string,
   key: string,
-  type: FormItemType,
+  type: IFormItemType,
   rules: IRuleFormItem[]
 }
 export interface IGroup {
