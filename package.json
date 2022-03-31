@@ -1,10 +1,20 @@
 {
   "scripts": {
-    "start:temp": "pnpm recursive run dev --filter @plugin/temp",
+    "start:data": "pnpm --filter @plugin/data-form --recursive run dev",
+    "start:temp": "pnpm --filter @plugin/temp --recursive run dev",
+    "build:temp": "pnpm --filter @plugin/temp --recursive run build",
     "start:ui": "pnpm  --filter @plugin/ui --recursive run dev",
     "build:ui": "pnpm  --filter @plugin/ui --recursive run build "
   },
   "workspaces": [
     "./packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^21.0.3",
+    "@types/node": "*",
+    "rollup": "^2.68.0",
+    "rollup-plugin-dts": "^4.2.0",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.5.4"
+  }
 }

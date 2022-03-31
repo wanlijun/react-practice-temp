@@ -2,8 +2,12 @@
   "name": "@plugin/data-form",
   "version": "1.0.0",
   "description": "",
-  "main": "index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "ES2015",
+  "type": "module",
   "scripts": {
+    "dev": "rollup -w -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

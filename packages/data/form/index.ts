@@ -21,18 +21,31 @@ export enum IFormItemType {
   CUSTOM = 'CUSTOM',
 }
 
-export enum ValidType {
+export enum IValidType {
+  // 必填
   REQUIRED = 'REQUIRED',
+  // 小数
   POINT = 'POINT',
+  // 整数
   INTEGER = 'INTEGER',
+  // 身份证
   ID = 'ID',
+  // 座机号
   TEL = 'TEL',
+  // 手机号
   PHONE = 'PHONE',
+  // 座机和手机号
   TEL_PHONE = 'TEL_PHONE',
+  // 正则
   REGULAR = 'REGULAR',
+  // 自定义
   CUSTOM = 'CUSTOM',
+  // 最小长度
   MIN_LEN = 'MIN_LEN',
+  // 最大长都
   MAX_LEN = 'MAX_LEN',
+  // 不能全为空格
+  WHITESPACE = 'WHITESPACE',
 }
 export interface IOption {
   label: string,
@@ -42,7 +55,7 @@ export interface IFormItem {
   key: string,
   label?: string,
   type: IFormItemType,
-  rules?: ValidType[],
+  rules?: IValidType[],
   options?: IOption[]
 }
 export interface IFiled {
@@ -81,14 +94,14 @@ export interface ITable {
   operation?: INoneOperation | IRouterOperation | IFormOperation
 }
 export interface IRuleFormItem {
-  type: ValidType,
+  type: IValidType,
   typeName: string,
 }
 export interface IFields {
   label: string,
   key: string,
   type: IFormItemType,
-  rules: IRuleFormItem[]
+  rules: IValidType[],
 }
 export interface IGroup {
   subModuleName: string,

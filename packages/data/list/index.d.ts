@@ -3,7 +3,7 @@ type BaseFormItemType = 'INPUT' | 'DATE' | 'SELECT' | 'RANGE_DATE' | 'TIME' | 'R
 type AdvanceFormItemType = 'AUTO_COMPLETE' | 'CHECK_BOX' | 'INPUT_NUMBER' | 'RADIO' | 'SWITCH' | 'TRANSFER' | 'TREESELECT' | 'UPLOAD' | 'QUILL'
 type FormItemType = BaseFormItemType | AdvanceFormItemType;
 
-export enum ValidType {
+export enum IValidType {
   REQUIRED = 'REQUIRED',
   POINT = 'POINT',
   INTEGER = 'INTEGER',
@@ -22,7 +22,7 @@ export interface IFormItem {
   key: string,
   label?: string,
   type: FormItemType,
-  rules?: ValidType[],
+  rules?: IValidType[],
   options?: IOption[]
 }
 export interface IFiled {
@@ -61,7 +61,7 @@ export interface ITable {
   operation?: INoneOperation | IRouterOperation | IFormOperation
 }
 export interface IRuleFormItem {
-  type: ValidType,
+  type: IValidType,
   typeName: string,
   check: boolean,
   msg: string,

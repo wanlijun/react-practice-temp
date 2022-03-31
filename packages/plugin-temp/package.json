@@ -7,13 +7,15 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "@plugin/data": "workspace:^1.0.0",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@types/node": "*",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rollup": "^2.68.0",
     "rollup-plugin-typescript2": "^0.31.2"
   },
   "devDependencies": {
+    "@plugin/data-form": "workspace:^1.0.0",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@vitejs/plugin-react": "^1.0.7",

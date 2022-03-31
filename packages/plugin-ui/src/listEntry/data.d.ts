@@ -2,7 +2,7 @@ type BaseFormItemType = 'INPUT' | 'DATE' | 'SELECT' | 'RANGE_DATE' | 'TIME' | 'R
 type AdvanceFormItemType = 'AUTO_COMPLETE' | 'CHECK_BOX' | 'INPUT_NUMBER' | 'RADIO' | 'SWITCH' | 'TRANSFER' | 'TREESELECT' | 'UPLOAD'
 type FormItemType = BaseFormItemType | AdvanceFormItemType;
 
-export enum ValidType {
+export enum IValidType {
   POINT = 'POINT',
   INTEGER = 'INTEGER',
   ID = 'ID',
@@ -10,7 +10,7 @@ export enum ValidType {
   PHONE = 'PHONE',
   TEL_PHONE = 'TEL_PHONE',
   REGULAR = 'REGULAR',
-  CUSTOM =  'CUSTOM',
+  CUSTOM = 'CUSTOM',
 }
 export interface IOption {
   label: string,
@@ -20,7 +20,7 @@ export interface IFormItem {
   key: string,
   label?: string,
   type: FormItemType,
-  rules?: ValidType[],
+  rules?: IValidType[],
   options?: IOption[]
 }
 export interface IFiled {

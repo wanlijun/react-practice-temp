@@ -1,4 +1,4 @@
-import { IInputData, IFields, FormItemType } from '@plugin/data/form';
+import { IInputData, IFields, IFormItemType } from '@plugin/data-form';
 import {
   COMPONENT_MAP
 } from './utils/constant';
@@ -14,7 +14,7 @@ function createTypeSet(data: IFields[]) {
 }
 function createComponentStr(moduleName: string, fields: IFields[], prefix: boolean) {
   const typeSet = createTypeSet(fields);
-  const quillIdx = typeSet.indexOf('QUILL');
+  const quillIdx = typeSet.indexOf(IFormItemType.QUILL);
   if (quillIdx >= 0) {
     typeSet.splice(quillIdx, quillIdx)
   }

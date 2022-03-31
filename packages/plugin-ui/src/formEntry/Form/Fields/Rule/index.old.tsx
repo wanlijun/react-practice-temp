@@ -4,21 +4,21 @@ import {
   Form
 } from 'antd';
 import {
-  ValidType,
+  IValidType,
   IRuleFormItem
 } from '@plugin/data-form';
 import styles from './index.module.less';
 
 
-const initialValue: IRuleFormItem[] = [
-  { type: ValidType.REQUIRED, typeName: '必填', check: false, msg: '', },
-  { type: ValidType.POINT, typeName: '小数', check: false, msg: '', },
-  { type: ValidType.INTEGER, typeName: '整数', check: false, msg: '' },
-  { type: ValidType.TEL_PHONE, typeName: '手机号和座机', check: false, msg: '' },
-  { type: ValidType.PHONE, typeName: '手机号', check: false, msg: '' },
-  { type: ValidType.TEL, typeName: '座机', check: false, msg: '' },
-  { type: ValidType.REGULAR, typeName: '正则', check: false, msg: '' },
-  { type: ValidType.CUSTOM, typeName: '自定义校验函数', check: false, msg: '' },
+const initialValue = [
+  { type: IValidType.REQUIRED, typeName: '必填', check: false, msg: '', },
+  { type: IValidType.POINT, typeName: '小数', check: false, msg: '', },
+  { type: IValidType.INTEGER, typeName: '整数', check: false, msg: '' },
+  { type: IValidType.TEL_PHONE, typeName: '手机号和座机', check: false, msg: '' },
+  { type: IValidType.PHONE, typeName: '手机号', check: false, msg: '' },
+  { type: IValidType.TEL, typeName: '座机', check: false, msg: '' },
+  { type: IValidType.REGULAR, typeName: '正则', check: false, msg: '' },
+  { type: IValidType.CUSTOM, typeName: '自定义校验函数', check: false, msg: '' },
 ]
 const Rule = ({ name }: { name: (string | number)[] }) => {
   const renderItem = (item: IRuleFormItem, idx: number) => {

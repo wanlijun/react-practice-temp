@@ -5,7 +5,7 @@ import {
   Select
 } from 'antd';
 import {
-  ValidType,
+  IValidType,
   IRuleFormItem
 } from '@plugin/data-form';
 import styles from './index.module.less';
@@ -13,15 +13,15 @@ import styles from './index.module.less';
 const { Option } = Select;
 
 const options: IRuleFormItem[] = [
-  { type: ValidType.REQUIRED, typeName: '必填' },
-  { type: ValidType.POINT, typeName: '小数' },
-  { type: ValidType.INTEGER, typeName: '整数' },
-  { type: ValidType.TEL_PHONE, typeName: '手机号和座机' },
-  { type: ValidType.MIN_LEN, typeName: '手机号' },
-  { type: ValidType.PHONE, typeName: '手机号' },
-  { type: ValidType.TEL, typeName: '座机' },
-  { type: ValidType.REGULAR, typeName: '正则' },
-  { type: ValidType.CUSTOM, typeName: '自定义校验函数' },
+  { type: IValidType.REQUIRED, typeName: '必填' },
+  { type: IValidType.POINT, typeName: '小数' },
+  { type: IValidType.INTEGER, typeName: '整数' },
+  { type: IValidType.TEL_PHONE, typeName: '手机号和座机' },
+  { type: IValidType.MIN_LEN, typeName: '手机号' },
+  { type: IValidType.PHONE, typeName: '手机号' },
+  { type: IValidType.TEL, typeName: '座机' },
+  { type: IValidType.REGULAR, typeName: '正则' },
+  { type: IValidType.CUSTOM, typeName: '自定义校验函数' },
 ]
 const Rule = ({ name }: { name: (string | number)[] }) => {
   const renderItem = (item: IRuleFormItem, idx: number) => {

@@ -1,5 +1,5 @@
 import {
-  ValidType,
+  IValidType,
   IRuleFormItem,
   IFormItemType
 } from '@plugin/data-form';
@@ -28,16 +28,16 @@ const VALID_MAP = {
   CUSTOM: '自定义',
 }
 export const RULE_ITEMS: IRuleFormItem[] = [
-  { type: ValidType.REQUIRED, typeName: '必填' },
-  { type: ValidType.POINT, typeName: '小数' },
-  { type: ValidType.INTEGER, typeName: '整数' },
-  { type: ValidType.TEL_PHONE, typeName: '手机号和座机' },
-  { type: ValidType.PHONE, typeName: '手机号' },
-  { type: ValidType.MIN_LEN, typeName: '最小长度' },
-  { type: ValidType.MAX_LEN, typeName: '最大长度' },
-  { type: ValidType.REGULAR, typeName: '正则' },
-  { type: ValidType.CUSTOM, typeName: '自定义校验函数' },
-  { type: ValidType.TEL, typeName: '座机' },
+  { type: IValidType.REQUIRED, typeName: '必填' },
+  { type: IValidType.POINT, typeName: '小数' },
+  { type: IValidType.INTEGER, typeName: '整数' },
+  { type: IValidType.TEL_PHONE, typeName: '手机号和座机' },
+  { type: IValidType.PHONE, typeName: '手机号' },
+  { type: IValidType.MIN_LEN, typeName: '最小长度' },
+  { type: IValidType.MAX_LEN, typeName: '最大长度' },
+  { type: IValidType.WHITESPACE, typeName: '不能全为空格' },
+  { type: IValidType.REGULAR, typeName: '正则' },
+  { type: IValidType.CUSTOM, typeName: '自定义校验函数' },
 ]
 function transformToOpts(data: any) {
   const list = Object.keys(data).map((item) => {
