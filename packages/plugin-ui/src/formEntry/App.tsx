@@ -13,7 +13,7 @@ function App() {
   const saveHandle = (data: IInputData) => {
     console.log(import.meta.env.MODE, 'env')
     if (import.meta.env.MODE !== 'development') {
-      console.log(vscode, '=====???save')
+      console.log(JSON.stringify(data), '=====???DATA')
       vscode.postMessage({
         command: 'save',
         data

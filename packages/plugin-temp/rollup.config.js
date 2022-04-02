@@ -5,6 +5,7 @@ export default {
   input: './src/form/index.ts',
   output: {
     file: '/home/lijunwan/caicai/project/best/fe-banan-admin-test/generate-code-plugin/template/form.js',
+    format: 'cjs'
   },
   manualChunks: () => {
     return null;

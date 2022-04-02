@@ -9,5 +9,11 @@ export const COMPONENT_MAP = {
   RADIO: 'Radio',
   SWITCH: 'Switch',
   TREESELECT: 'TreeSelect',
-  UPLOAD: 'Upload',
 };
+
+export const CUSTOM_COMPONENTS_MAP = {
+  QUILL: `import Quill from 'components/common/Quill';`,
+  UPLOAD: `import BUpload from 'components/common/BUpload';`
+}
+
+export const CUSTOM_COMPONENTS_TYPE = ['QUILL', 'UPLOAD']

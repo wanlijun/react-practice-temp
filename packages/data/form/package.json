@@ -6,6 +6,12 @@
   "types": "./dist/index.d.ts",
   "module": "ES2015",
   "type": "module",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "dev": "rollup -w -c",
     "test": "echo \"Error: no test specified\" && exit 1"

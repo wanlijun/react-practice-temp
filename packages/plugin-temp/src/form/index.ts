@@ -1,35 +1,62 @@
 import { IInputData, IFields, IFormItemType } from '@plugin/data-form';
 import {
-  COMPONENT_MAP
+  COMPONENT_MAP,
+  CUSTOM_COMPONENTS_TYPE,
 } from './utils/constant';
 import {
-  getAndComponentType,
+  getAntdComponent,
   getFormBody,
+  getCustomComponent,
+  CustomComponentType
 } from './utils/temp';
+import {
+  upperCaseFirstLetter
+} from './utils/helper';
 type ComponentType = keyof typeof COMPONENT_MAP
 
-function createTypeSet(data: IFields[]) {
+function getComponentsType(data: IFields[]) {
   const types = data.map((item) => item.type);
   return new Array(...new Set(types));
 }
-function createComponentStr(moduleName: string, fields: IFields[], prefix: boolean) {
-  const typeSet = createTypeSet(fields);
-  const quillIdx = typeSet.indexOf(IFormItemType.QUILL);
-  if (quillIdx >= 0) {
-    typeSet.splice(quillIdx, quillIdx)
+function createRequestMethod(hasEdit: boolean) {
+  if (hasEdit) {
+    return `
+      const { id } = parse(this.props.location.search)
+      const params = this.handleParams(values);
+      console.log(params)
+      if (id) {
+        // 编辑
+      } else {
+        // 新增
+      }
+    `
   }
+  return `
+    const params = this.handleParams(values);
+    console.log(params)
+  `
+}
+function createComponentStr(moduleName: string, fields: IFields[], prefix: boolean, hasEdit = false) {
+  const typeList = getComponentsType(fields);
+  const antdComponentsType = typeList.filter((type) => !CUSTOM_COMPONENTS_TYPE.includes(type));
+  const customComponentsType = typeList.filter((type) => CUSTOM_COMPONENTS_TYPE.includes(type));
   // TODO:类型需要优化
-  const components = getAndComponentType(typeSet as ComponentType[]);
+  const components = getAntdComponent(antdComponentsType as ComponentType[]);
+  const customComponents = getCustomComponent(customComponentsType as CustomComponentType[])
   const { str } = getFormBody(fields);
 
   return `
   import React, { Component } from 'react';
   import { observer, inject } from 'mobx-react';
-  import { Form, ${components}} from 'antd';
+  import { Form, Button, ${components}} from 'antd';
+  import ModuleTitle from 'components/common/ModuleTitle';
+  import MainTitle from 'components/common/mainTitle';
+  ${hasEdit ? `import { parse } from 'query-string';` : ''}
+  ${customComponents}
   import styles from './index.less';
   
   @Form.create()
-  @inject(${moduleName}Store)
+  @inject('${upperCaseFirstLetter(moduleName)}Store')
   @observer
   class ${moduleName} extends Component {
     constructor(props) {
@@ -57,24 +84,17 @@ function createComponentStr(moduleName: string, fields: IFields[], prefix: boole
       } = this.props.form;
       validateFields((error, values) => {
         if (!error) {
-          const { id } = parse(this.props.location.search)
-          const params = this.handleParams(values);
-          if (id) {
-            // 编辑
-          } else {
-            // 新增
-          }
+          ${createRequestMethod(hasEdit)}
         }
       })
     }
     goBack = () => {
       history.go(-1);
     }
-  }
   render() {
     const { getFieldDecorator } = this.props.form;
     const {
-      detail: { data, loading: detailLoading },
+      ${hasEdit ? ' detail: { data, loading: detailLoading },' : ''}
       formInfo: { loading }
     } = this.props.${moduleName}Store;
     return (
@@ -102,6 +122,7 @@ function createComponentStr(moduleName: string, fields: IFields[], prefix: boole
       </div>
     )
   }
+}
   export default ${moduleName};
 `;
 }
@@ -130,7 +151,7 @@ export function generateTemp(data: IInputData) {
       render: () => createComponentStr(moduleName, fields, false)
     },
     {
-      path: './index.module.less',
+      path: './index.less',
       render: () => ''
     },
   ]
